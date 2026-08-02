@@ -45,3 +45,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+function sendWhatsApp() {
+
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const address = document.getElementById("address").value;
+
+    const text =
+`🛍️ New Order
+
+👤 Name: ${name}
+📞 Phone: ${phone}
+📍 Address: ${address}`;
+
+    window.open(
+        "https://wa.me/8801860821074?text=" + encodeURIComponent(text),
+        "_blank"
+    );
+}
