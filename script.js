@@ -1,5 +1,13 @@
 // ZELVIQO Luxury Skincare
+let selectedProduct = "";
 
+function selectProduct(productName) {
+    selectedProduct = productName;
+
+    document.querySelector(".order").scrollIntoView({
+        behavior: "smooth"
+    });
+}
 console.log("Welcome to ZELVIQO");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -55,13 +63,20 @@ function sendWhatsApp() {
     alert("Please fill all fields.");
     return;
   }
-
   const text = `🛍️ New Order
 
+📦 Product: ${selectedProduct}
+
 👤 Name: ${name}
+
 📞 Phone: ${phone}
+
 📍 Address: ${address}`;
 
+    if (selectedProduct === "") {
+    alert("আগে একটি প্রোডাক্ট সিলেক্ট করুন");
+    return;
+}
   window.open(
     "https://wa.me/8801860821074?text=" + encodeURIComponent(text),
     "_blank"
