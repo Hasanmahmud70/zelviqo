@@ -90,14 +90,34 @@ Welcome to <strong>ZELVIQO</strong> — where luxury meets skincare. We are comm
 <section id="review" class="review">
 <h2>Customer Reviews</h2>
 
-<div class="review-box">
-⭐⭐⭐⭐⭐
-<p>Amazing Quality.</p>
+<!-- Review Form -->
+<div class="review-form-container">
+<h3>Write a Review</h3>
+<form id="reviewForm">
+<input type="text" id="reviewName" placeholder="Your Name" required>
+
+<div class="rating-container">
+<label>Your Rating:</label>
+<div class="star-rating">
+<input type="radio" id="star5" name="rating" value="5" checked><label for="star5" title="5 stars">★</label>
+<input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">★</label>
+<input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">★</label>
+<input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">★</label>
+<input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">★</label>
+</div>
 </div>
 
-<div class="review-box">
-⭐⭐⭐⭐⭐
-<p>Highly Recommended.</p>
+<textarea id="reviewText" placeholder="Write your review here..." required></textarea>
+<button type="submit" id="submitReviewBtn">Submit Review</button>
+</form>
+</div>
+
+<!-- Dynamic Reviews Display Container -->
+<div id="reviews-list"></div>
+
+<!-- See More Reviews Button -->
+<div class="see-more-container">
+<button type="button" id="seeMoreBtn" class="see-more-btn" style="display: none;">See More Reviews</button>
 </div>
 </section>
 
@@ -119,6 +139,7 @@ Welcome to <strong>ZELVIQO</strong> — where luxury meets skincare. We are comm
 <footer>
 <p>©2026 ZELVIQO Luxury Skincare</p>
 </footer>
+
 <script type="module" src="firebase.js"></script>
 <script src="script.js"></script>
 </body>
