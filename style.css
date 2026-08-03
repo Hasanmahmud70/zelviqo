@@ -23,11 +23,10 @@ z-index:1000;
 }
 
 .logo img{
-    height:80px;
-    width:auto;
-    display:block;
-    margin:0 auto;
-}
+height:80px;
+width:auto;
+display:block;
+margin:0 auto;
 }
 
 nav a{
@@ -155,6 +154,14 @@ text-align:center;
 margin-bottom:30px;
 }
 
+.selected-product-display{
+text-align:center;
+font-size:18px;
+font-weight:bold;
+color:#0c6b63;
+margin-bottom:15px;
+}
+
 form{
 max-width:500px;
 margin:auto;
@@ -203,13 +210,75 @@ background:#f5f5f5;
 border-radius:15px;
 }
 
+.about{
+padding:80px 20px;
+background:#fff;
+text-align:center;
+}
+
+.about h2{
+font-size:36px;
+color:#0c6b63;
+margin-bottom:20px;
+}
+
+.about p{
+max-width:850px;
+margin:auto;
+font-size:18px;
+line-height:1.8;
+color:#555;
+}
+
+.contact{
+padding:80px 8%;
+background:#fff;
+text-align:center;
+}
+
+.contact h2{
+font-size:36px;
+margin-bottom:20px;
+color:#0c6b63;
+}
+
+.contact-box p{
+font-size:18px;
+margin:10px 0;
+color:#333;
+}
+
+.contact-box a{
+color:#0c6b63;
+text-decoration:none;
+}
+
 footer{
-    background:linear-gradient(135deg,#B8860B,#D4AF37,#F4D03F);
-    color:#ffffff;
-    text-align:center;
-    padding:30px;
-    margin-top:50px;
-    font-weight:600;
+background:linear-gradient(135deg,#B8860B,#D4AF37,#F4D03F);
+color:#ffffff;
+text-align:center;
+padding:30px;
+margin-top:50px;
+font-weight:600;
+}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+z-index:9999;
+}
+
+.whatsapp img{
+width:65px;
+height:65px;
+border-radius:50%;
+box-shadow:0 5px 20px rgba(0,0,0,.3);
+transition:.3s;
+}
+
+.whatsapp img:hover{
+transform:scale(1.1);
 }
 
 @media(max-width:768px){
@@ -235,42 +304,4 @@ height:auto;
 padding:80px 20px;
 }
 
-}
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-z-index:9999;
-}
-
-.whatsapp img{
-width:65px;
-height:65px;
-border-radius:50%;
-box-shadow:0 5px 20px rgba(0,0,0,.3);
-transition:.3s;
-}
-
-.whatsapp img:hover{
-transform:scale(1.1);
-}
-
-.about{
-padding:80px 20px;
-background:#fff;
-text-align:center;
-}
-
-.about h2{
-font-size:36px;
-color:#0c6b63;
-margin-bottom:20px;
-}
-
-.about p{
-max-width:850px;
-margin:auto;
-font-size:18px;
-line-height:1.8;
-color:#555;
 }
