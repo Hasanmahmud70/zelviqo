@@ -9,14 +9,12 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
 
-<a href="https://wa.me/8801860821074" class="whatsapp" target="_blank">
+<a href="https://wa.me/8801860821074" class="whatsapp" target="_blank" aria-label="WhatsApp">
 <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
 </a>
 
@@ -27,173 +25,95 @@
 </div>
 
 <nav>
-
 <a href="#home">Home</a>
-
 <a href="#products">Products</a>
-
 <a href="#about">About</a>
-
 <a href="#review">Reviews</a>
-
 <a href="#contact">Contact</a>
-
 </nav>
 
 </header>
 
 <section id="home" class="hero">
-
 <div class="hero-text">
-
 <h1>Luxury Skincare For Everyone</h1>
-
 <p>Glow Naturally with ZELVIQO Premium Collection.</p>
-
-<a href="#products" class="btn">
-
-Shop Now
-
-</a>
-
+<a href="#products" class="btn">Shop Now</a>
 </div>
-
 </section>
 
 <section id="products">
-
 <h2>Featured Products</h2>
 
 <div class="products">
 
 <div class="card">
-
-<img src="sunscreen2.jpg" alt="Sunscreen">
-
-<h3> Dr Rashel Vitamin C Serum </h3>
-
+<img src="sunscreen2.jpg" alt="Dr Rashel Vitamin C Serum">
+<h3>Dr Rashel Vitamin C Serum</h3>
 <p>৳499</p>
-
-<button onclick="selectProduct('Dr Rashel Vitamin C Serum')">
-Order Now
-</button>
-
+<button type="button" onclick="selectProduct('Dr Rashel Vitamin C Serum', '৳499')">Order Now</button>
 </div>
 
 <div class="card">
-
-<img src="sunscreen1.jpg" alt="Sunscreen">
-
-</h3><b> Care and Repair Sunscreen SPF 50+ PA+++</b></h3>
-
+<img src="sunscreen1.jpg" alt="Care and Repair Sunscreen">
+<h3>Care and Repair Sunscreen SPF 50+ PA+++</h3>
 <p>৳399</p>
-
-<button onclick="selectProduct('Care and Repair Sunscreen SPF50+')">
-Order Now
-</button>
-
+<button type="button" onclick="selectProduct('Care and Repair Sunscreen SPF 50+ PA+++', '৳399')">Order Now</button>
 </div>
 
 </div>
+</section>
+
 <section id="about" class="about">
-
 <h2>About ZELVIQO</h2>
-
 <p>
 Welcome to <strong>ZELVIQO</strong> — where luxury meets skincare. We are committed to delivering premium-quality skincare products that nourish, protect, and enhance your natural beauty. Every product is selected with care to provide safe, effective, and visible results, helping you achieve healthy, glowing, and confident skin every day.
 </p>
-
+</section>
 
 <section class="offer">
-
-<h2>
-
-🔥 Limited Time Offer
-
-</h2>
-
+<h2>🔥 Limited Time Offer</h2>
 </section>
 
 <section class="order">
-
 <h2>Order Now</h2>
+<p id="selected-product-display" class="selected-product-display"></p>
 
-<form>
-
+<form id="orderForm" onsubmit="event.preventDefault(); sendWhatsApp();">
 <input type="text" id="name" placeholder="Your Name">
-
 <input type="tel" id="phone" placeholder="Phone Number">
-
 <textarea id="address" placeholder="Address"></textarea>
-
 <button type="button" onclick="sendWhatsApp()">Confirm Order</button>
-Confirm Order
-
-</button>
-
 </form>
-
 </section>
 
 <section id="review" class="review">
-
 <h2>Customer Reviews</h2>
 
 <div class="review-box">
-
 ⭐⭐⭐⭐⭐
-
-<p>
-
-Amazing Quality.
-
-</p>
-
+<p>Amazing Quality.</p>
 </div>
 
 <div class="review-box">
-
 ⭐⭐⭐⭐⭐
-
-<p>
-
-Highly Recommended.
-
-</p>
-
+<p>Highly Recommended.</p>
 </div>
-
 </section>
-<section class="review">
-...
-</section>
-
-<!-- এখানে Contact Section পেস্ট করবে -->
 
 <section id="contact" class="contact">
-
 <h2>📞 Contact Us</h2>
 
 <div class="contact-box">
-
 <p><strong>📱 Phone:</strong> <a href="tel:01860821074">01860821074</a></p>
-
 <p><strong>💬 WhatsApp:</strong>
-<a href="https://wa.me/8801860821074" target="_blank">
-01860821074
-</a>
+<a href="https://wa.me/8801860821074" target="_blank">01860821074</a>
 </p>
-
 <p><strong>📧 Email:</strong>
-<a href="mailto:mdhasansikder70@gmail.com">
-mdhasansikder70@gmail.com
-</a>
+<a href="mailto:mdhasansikder70@gmail.com">mdhasansikder70@gmail.com</a>
 </p>
-
 <p><strong>📍 Address:</strong> Mirpur, Dhaka</p>
-
 </div>
-
 </section>
 
 <footer>
@@ -201,6 +121,5 @@ mdhasansikder70@gmail.com
 </footer>
 
 <script src="script.js"></script>
-
 </body>
 </html>
