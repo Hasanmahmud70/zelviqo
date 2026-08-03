@@ -1,84 +1,41 @@
 // ZELVIQO Luxury Skincare
 let selectedProduct = "";
+let selectedPrice = "";
 
-function selectProduct(productName) {
+function selectProduct(productName, productPrice) {
     selectedProduct = productName;
+    selectedPrice = productPrice;
 
-    document.querySelector(".order").scrollIntoView({
-        behavior: "smooth"
-    });
-}
-console.log("Welcome to ZELVIQO");
+    const displayElement = document.getElementById("selected-product-display");
+    if (displayElement) {
+        displayElement.innerText = "Selected Product: " + selectedProduct + " (" + selectedPrice + ")";
+    }
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    // সব Order Now বাটন
-    const orderButtons = document.querySelectorAll(".card button");
-
-    orderButtons.forEach(button => {
-        button.addEventListener("click", function () {
-
-            // Order Section এ নিয়ে যাবে
-            document.querySelector(".order").scrollIntoView({
-                behavior: "smooth"
-            });
-
+    const orderSection = document.querySelector(".order");
+    if (orderSection) {
+        orderSection.scrollIntoView({
+            behavior: "smooth"
         });
-    });
-
-    // Form Submit
-    const form = document.querySelector("form");
-
-    form.addEventListener("submit", function (e) {
-
-        e.preventDefault();
-
-        const name = form.querySelector("input[type='text']").value;
-        const phone = form.querySelector("input[type='tel']").value;
-        const address = form.querySelector("textarea").value;
-
-        if (name === "" || phone === "" || address === "") {
-            alert("Please fill all fields.");
-            return;
-        }
-
-        alert(
-            "Thank you " +
-            name +
-            "!\n\nYour order has been received successfully."
-        );
-
-        form.reset();
-
-    });
-
-});
-function sendWhatsApp() {
-
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-  const address = document.getElementById("address").value;
-
-  if (name === "" || phone === "" || address === "") {
-    alert("Please fill all fields.");
-    return;
-  }
-  const text = `🛍️ New Order
-
-📦 Product: ${selectedProduct}
-
-👤 Name: ${name}
-
-📞 Phone: ${phone}
-
-📍 Address: ${address}`;
-
-    if (selectedProduct === "") {
-    alert("আগে একটি প্রোডাক্ট সিলেক্ট করুন");
-    return;
+    }
 }
-  window.open(
-    "https://wa.me/8801860821074?text=" + encodeURIComponent(text),
-    "_blank"
-  );
+
+function sendWhatsApp() {
+    if (!selectedProduct) {
+        alert("Please select a product first.");
+        return;
+    }
+
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const address = document.getElementById("address").value.trim();
+
+    if (name === "" || phone === "" || address === "") {
+        alert("Please fill all fields.");
+        return;
+    }
+
+    const text = `🛍️ New Order\n\n📦 Product: ${selectedProduct}\n💰 Price: ${selectedPrice}\n👤 Customer Name: ${name}\n📞 Phone: ${phone}\n📍 Address: ${address}`;
+
+    const whatsappURL = "https://wa.me/8801860821074?text=" + encodeURIComponent(text);
+    window.open(whatsappURL, "_blank");
 }
