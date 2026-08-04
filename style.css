@@ -139,7 +139,7 @@ button, input, textarea, select {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 24px;
+    padding: 20px 24px;
 }
 
 .logo {
@@ -153,10 +153,12 @@ button, input, textarea, select {
 }
 
 .logo img {
-    height: 44px;
+    height: 72px;
     width: auto;
+    max-width: 220px;
     object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+    display: block;
+    filter: none;
 }
 
 .nav-links {
