@@ -1,5 +1,5 @@
 // ZELVIQO Luxury Skincare Order System
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVU28uEg3QVqDT-L2F6jt_xbdhRxyvltMGFln9myv-1RC2rHLNCeBz7jK5STNCbNlv/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTbIksbvRAUQxVho29aeMUz-Pf7hYLz6eUyC4npKi5_r2FA3eT_48fJ0ydl488bh9d/exec";
 
 // Global State
 let selectedProduct = "";
