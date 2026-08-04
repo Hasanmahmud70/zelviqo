@@ -379,6 +379,87 @@ transition:.3s;
 transform:scale(1.1);
 }
 
+/* --- Daraz / Shopify Style Quantity Selector --- */
+.quantity-wrapper {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 12px;
+padding: 15px;
+background: #f0f7f6;
+border: 1px solid #0c6b63;
+border-radius: 12px;
+margin-bottom: 10px;
+}
+
+.quantity-label {
+font-size: 16px;
+font-weight: 600;
+color: #333;
+}
+
+.quantity-control {
+display: flex;
+align-items: center;
+background: #fff;
+border: 1px solid #ccc;
+border-radius: 8px;
+overflow: hidden;
+}
+
+.qty-btn {
+width: 42px;
+height: 42px;
+background: #f5f5f5;
+border: none;
+font-size: 22px;
+font-weight: bold;
+color: #0c6b63;
+cursor: pointer;
+transition: background 0.2s, color 0.2s;
+display: flex;
+align-items: center;
+justify-content: center;
+user-select: none;
+padding: 0;
+}
+
+.qty-btn:hover {
+background: #0c6b63;
+color: #fff;
+}
+
+.quantity-input {
+width: 55px;
+height: 42px;
+border: none !important;
+border-left: 1px solid #ccc !important;
+border-right: 1px solid #ccc !important;
+border-radius: 0 !important;
+text-align: center;
+font-size: 18px;
+font-weight: 700;
+color: #222;
+padding: 0 !important;
+background: #fff;
+}
+
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+.quantity-input[type=number] {
+-moz-appearance: textfield;
+}
+
+.total-price-box {
+font-size: 20px;
+font-weight: bold;
+color: #0c6b63;
+}
+
 @media(max-width:768px){
 
 header{
