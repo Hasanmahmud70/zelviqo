@@ -1,5 +1,5 @@
 // ZELVIQO Luxury Skincare
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz77vWvR2xZdYHTXsyofnP7wnbkKDM54JUTPg3nInGndjLEH4-0pmdcKHb5_0mNs-_1hQ/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyHHoRFbVOwRGEknpHJ49wMneEgop0MB3zF7T6oRVg3-PdACMjNZYs3FtiKz9MAz5dv/exec";
 
 let selectedProduct = "";
 let selectedPrice = "";
