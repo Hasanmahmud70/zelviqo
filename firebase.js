@@ -343,6 +343,7 @@ window.zelviqoAuth = {
     logoutUser,
     updateUserProfile,
     fetchUserOrderHistory,
+    saveOrderToFirestore,
     getCurrentUser
 };
 
