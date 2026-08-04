@@ -1,157 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZELVIQO | Luxury Skincare</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Advanced SEO Meta Tags -->
+    <title>ZELVIQO | Luxury Skincare & Premium Beauty Collection</title>
+    <meta name="description" content="Shop premium luxury skincare products at ZELVIQO. Original Vitamin C Serums, Sunscreens, and skincare items with Cash on Delivery across Bangladesh. Fast 1-4 day delivery!">
+    <meta name="keywords" content="ZELVIQO, skincare Bangladesh, luxury skincare, Dr Rashel Vitamin C, SkinO Sunscreen, buy cosmetics online Bangladesh, cash on delivery skincare">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="ZELVIQO | Luxury Skincare">
+    <meta property="og:description" content="Glow naturally with ZELVIQO Premium Luxury Skincare. Cash on Delivery available all over Bangladesh!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="Logo.png">
+    
+    <!-- Stylesheets & Fonts -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Schema.org Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "OnlineStore",
+      "name": "ZELVIQO Luxury Skincare",
+      "description": "Premium luxury skincare store delivering across Bangladesh.",
+      "telephone": "+8801619875217",
+      "email": "zelviqo.bd@gmail.com",
+      "priceRange": "৳399 - ৳1999",
+      "paymentAccepted": "Cash on Delivery",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mirpur",
+        "addressRegion": "Dhaka",
+        "addressCountry": "BD"
+      }
+    }
+    </script>
 </head>
 
 <body>
-<a href="https://wa.me/8801619875217"
-   class="whatsapp"
-   target="_blank"
-   aria-label="WhatsApp">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-</a>
-<header>
+    <!-- Floating WhatsApp Button (Kept intact) -->
+    <a href="https://wa.me/8801619875217" class="whatsapp" target="_blank" aria-label="Chat on WhatsApp">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+    </a>
 
-<div class="logo">
-<img src="Logo.png" alt="ZELVIQO Logo">
-</div>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="Logo.png" alt="ZELVIQO Logo">
+        </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#order">Order</a>
+            <a href="#faq">FAQ</a>
+            <a href="#review">Reviews</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
-<nav>
-<a href="#home">Home</a>
-<a href="#products">Products</a>
-<a href="#about">About</a>
-<a href="#review">Reviews</a>
-<a href="#contact">Contact</a>
-</nav>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-text">
+            <h1>Luxury Skincare For Everyone</h1>
+            <p>Glow Naturally with ZELVIQO Premium Collection.</p>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+    </section>
 
-</header>
+    <!-- Trust Badges Bar -->
+    <section class="trust-bar">
+        <div class="trust-item">✨ 100% Original Products</div>
+        <div class="trust-item">💵 Cash On Delivery</div>
+        <div class="trust-item">🚚 Express Shipping</div>
+        <div class="trust-item">🔄 7 Days Easy Return</div>
+    </section>
 
-<section id="home" class="hero">
-<div class="hero-text">
-<h1>Luxury Skincare For Everyone</h1>
-<p>Glow Naturally with ZELVIQO Premium Collection.</p>
-<a href="#products" class="btn">Shop Now</a>
-</div>
-</section>
+    <!-- Products Section -->
+    <section id="products">
+        <h2>Featured Products</h2>
+        <div class="products">
 
-<section id="products">
-<h2>Featured Products</h2>
+            <!-- Product Card 1 -->
+            <div class="card">
+                <span class="stock-badge in-stock">✅ In Stock</span>
+                <img src="sunscreen2.jpg" alt="Dr Rashel Vitamin C Serum" loading="lazy">
+                <h3>Dr Rashel Vitamin C Serum</h3>
+                <p class="price">৳499</p>
+                <button type="button" onclick="selectProduct('Dr Rashel Vitamin C Serum', '৳499')">Order Now</button>
+            </div>
 
-<div class="products">
+            <!-- Product Card 2 -->
+            <div class="card">
+                <span class="stock-badge in-stock">✅ In Stock</span>
+                <img src="sunscreen1.jpg" alt="SkinO Care and Repair Sunscreen" loading="lazy">
+                <h3>SkinO Care and Repair Sunscreen SPF 50+ PA+++</h3>
+                <p class="price">৳399</p>
+                <button type="button" onclick="selectProduct('SkinO Care and Repair Sunscreen SPF 50+ PA+++', '৳399')">Order Now</button>
+            </div>
 
-<div class="card">
-<img src="sunscreen2.jpg" alt="Dr Rashel Vitamin C Serum">
-<h3>Dr Rashel Vitamin C Serum</h3>
-<p>৳499</p>
-<button type="button" onclick="selectProduct('Dr Rashel Vitamin C Serum', '৳499')">Order Now</button>
-</div>
+        </div>
+    </section>
 
-<div class="card">
-<img src="sunscreen1.jpg" alt="SkinO Care and Repair Sunscreen">
-<h3>SkinO Care and Repair Sunscreen SPF 50+ PA+++</h3>
-<p>৳399</p>
-<button type="button" onclick="selectProduct('SkinO Care and Repair Sunscreen SPF 50+ PA+++', '৳399')">Order Now</button>
-</div>
+    <!-- Offer Banner -->
+    <section class="offer">
+        <h2>🔥 Limited Time Offer</h2>
+        <p>🎉 Spend ৳1999 or more and get <strong>FREE DELIVERY</strong> anywhere in Bangladesh!</p>
+    </section>
 
-</div>
-</section>
+    <!-- Order Section / Checkout Card -->
+    <section id="order" class="order">
+        <h2>Place Your Order</h2>
+        <p id="selected-product-display" class="selected-product-display">Please select a product above to order.</p>
 
-<section id="about" class="about">
-<h2>About ZELVIQO</h2>
-<p>
-Welcome to <strong>ZELVIQO</strong> — where luxury meets skincare. We are committed to delivering premium-quality skincare products that nourish, protect, and enhance your natural beauty. Every product is selected with care to provide safe, effective, and visible results, helping you achieve healthy, glowing, and confident skin every day.
-</p>
-</section>
+        <!-- Premium Checkout Card -->
+        <div class="checkout-card" id="checkout-card" style="display: none;">
+            
+            <!-- Delivery Info Badges -->
+            <div class="delivery-info-badges">
+                <div class="info-badge">🚚 <strong>Delivery Time:</strong> Inside Dhaka (1–2 Days) | Outside Dhaka (2–4 Days)</div>
+                <div class="info-badge cod-badge">💵 <strong>Cash On Delivery Available</strong></div>
+            </div>
 
-<section class="offer">
-<h2>🔥 Limited Time Offer</h2>
-</section>
+            <!-- Free Delivery Progress Alert -->
+            <div id="free-delivery-banner" class="free-delivery-banner"></div>
 
-<section class="order">
-<h2>Order Now</h2>
-<p id="selected-product-display" class="selected-product-display"></p>
+            <form id="orderForm" onsubmit="event.preventDefault(); submitOrder();">
+                
+                <!-- Quantity Control Wrapper -->
+                <div id="quantity-wrapper" class="quantity-wrapper">
+                    <span class="quantity-label">Quantity:</span>
+                    <div class="quantity-control">
+                        <button type="button" class="qty-btn" onclick="changeQuantity(-1)" aria-label="Decrease Quantity">-</button>
+                        <input type="number" id="quantity" class="quantity-input" value="1" min="1" readonly>
+                        <button type="button" class="qty-btn" onclick="changeQuantity(1)" aria-label="Increase Quantity">+</button>
+                    </div>
+                </div>
 
-<form id="orderForm" onsubmit="event.preventDefault(); submitOrder();">
-<!-- Quantity Selector & Total Price Display -->
-<div id="quantity-wrapper" class="quantity-wrapper" style="display:none;">
-    <div class="quantity-label">Quantity:</div>
-    <div class="quantity-control">
-        <button type="button" class="qty-btn" onclick="changeQuantity(-1)">-</button>
-        <input type="number" id="quantity" class="quantity-input" value="1" min="1" readonly>
-        <button type="button" class="qty-btn" onclick="changeQuantity(1)">+</button>
-    </div>
-    <div class="total-price-box">
-        Total Price: <span id="total-price-display">৳0</span>
-    </div>
-</div>
+                <!-- Delivery Area Selection -->
+                <div class="delivery-options-group">
+                    <label class="section-label">Select Delivery Location:</label>
+                    <div class="delivery-options">
+                        <label class="delivery-option active" id="opt-dhaka">
+                            <input type="radio" name="deliveryArea" value="dhaka" checked onclick="setDeliveryLocation('dhaka')">
+                            <span class="radio-title">Inside Dhaka</span>
+                            <span class="radio-price" id="dhaka-charge-text">৳60</span>
+                        </label>
 
-<input type="text" id="name" placeholder="Your Name" required>
-<input type="tel" id="phone" placeholder="Phone Number" required>
-<textarea id="address" placeholder="Address" required></textarea>
-<button type="submit" id="submitBtn">Confirm Order</button>
-</form>
+                        <label class="delivery-option" id="opt-outside">
+                            <input type="radio" name="deliveryArea" value="outside" onclick="setDeliveryLocation('outside')">
+                            <span class="radio-title">Outside Dhaka</span>
+                            <span class="radio-price" id="outside-charge-text">৳120</span>
+                        </label>
+                    </div>
+                </div>
 
-<div id="order-status" style="display:none; text-align:center; font-weight:600; font-size:18px; color:#0c6b63; margin-top:20px;"></div>
-</section>
+                <!-- Coupon System -->
+                <div class="coupon-wrapper">
+                    <label class="section-label" for="couponCode">Have a Coupon?</label>
+                    <div class="coupon-input-box">
+                        <input type="text" id="couponCode" placeholder="Enter coupon code (e.g., ZELVIQO10)" style="text-transform: uppercase;">
+                        <button type="button" onclick="applyCoupon()" id="applyCouponBtn">Apply</button>
+                    </div>
+                    <small id="coupon-message" class="coupon-msg"></small>
+                </div>
 
-<section id="review" class="review">
-<h2>Customer Reviews</h2>
+                <!-- Live Order Summary Box -->
+                <div class="order-summary-box">
+                    <h3>Order Summary</h3>
+                    <div class="summary-row">
+                        <span>Product Price:</span>
+                        <span id="summary-unit-price">৳0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Quantity:</span>
+                        <span id="summary-qty">1</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Product Total:</span>
+                        <span id="summary-product-total">৳0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Charge:</span>
+                        <span id="summary-delivery-charge">৳60</span>
+                    </div>
+                    <div class="summary-row discount-row" id="discount-summary-row" style="display: none;">
+                        <span>Discount:</span>
+                        <span id="summary-discount">-৳0</span>
+                    </div>
+                    <hr class="summary-divider">
+                    <div class="summary-row grand-total-row">
+                        <span>Grand Total:</span>
+                        <span id="summary-grand-total">৳0</span>
+                    </div>
+                </div>
 
-<!-- Review Form -->
-<div class="review-form-container">
-<h3>Write a Review</h3>
-<form id="reviewForm">
-<input type="text" id="reviewName" placeholder="Your Name" required>
+                <!-- Customer Contact Details -->
+                <div class="customer-info-group">
+                    <label class="section-label">Shipping Details:</label>
+                    <input type="text" id="name" placeholder="Your Full Name" required>
+                    <input type="tel" id="phone" placeholder="Phone Number (e.g. 017XXXXXXXX)" requiredPattern="[0-9]{11}">
+                    <textarea id="address" placeholder="Full Address (House no, Road no, Area, District)" required></textarea>
+                </div>
 
-<div class="rating-container">
-<label>Your Rating:</label>
-<div class="star-rating">
-<input type="radio" id="star5" name="rating" value="5" checked><label for="star5" title="5 stars">★</label>
-<input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">★</label>
-<input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">★</label>
-<input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">★</label>
-<input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">★</label>
-</div>
-</div>
+                <button type="submit" id="submitBtn" class="confirm-order-btn">Confirm Order (Cash on Delivery)</button>
+            </form>
+        </div>
 
-<textarea id="reviewText" placeholder="Write your review here..." required></textarea>
-<button type="submit" id="submitReviewBtn">Submit Review</button>
-</form>
-</div>
+        <!-- Order Success Message Box -->
+        <div id="order-status" class="order-status-card" style="display:none;"></div>
+    </section>
 
-<!-- Dynamic Reviews Display Container -->
-<div id="reviews-list"></div>
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <h2>Frequently Asked Questions (FAQ)</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                    <span>🚚 How many days does delivery take?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Inside Dhaka city, delivery takes 1 to 2 business days. Outside Dhaka, delivery takes 2 to 4 business days.</p>
+                </div>
+            </div>
 
-<!-- See More Reviews Button -->
-<div class="see-more-container">
-<button type="button" id="seeMoreBtn" class="see-more-btn" style="display: none;">See More Reviews</button>
-</div>
-</section>
+            <div class="faq-item">
+                <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                    <span>💵 Is Cash On Delivery available?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes! We offer 100% Cash On Delivery all over Bangladesh. You pay only when you receive your product.</p>
+                </div>
+            </div>
 
-<section id="contact" class="contact">
-<h2>📞 Contact Us</h2>
+            <div class="faq-item">
+                <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                    <span>🛒 How do I place an order?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Simply click "Order Now" under your desired product, select your delivery area, enter your address and phone number, and click "Confirm Order".</p>
+                </div>
+            </div>
 
-<div class="contact-box">
-<p><strong>📱 Phone:</strong> <a href="tel:01619875217">01619875217</a></p>
-<p><strong>📧 Email:</strong> <a href="mailto:zelviqo.bd@gmail.com">zelviqo.bd@gmail.com</a></p>
-<p><strong>📍 Address:</strong> Mirpur, Dhaka, Bangladesh</p>
-</div>
-</section>
+            <div class="faq-item">
+                <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                    <span>🔄 Can I return or exchange a product?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes, if you receive a damaged, incorrect, or defective item, you can request a return or replacement within 7 days of delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<footer>
-<p>©2026 ZELVIQO Luxury Skincare</p>
-</footer>
+    <!-- Return Policy Section -->
+    <section id="return-policy" class="policy-section">
+        <div class="policy-card">
+            <h2>🔄 Return & Refund Policy</h2>
+            <p>At <strong>ZELVIQO</strong>, customer satisfaction is our top priority. Please review our return terms:</p>
+            <ul>
+                <li>Items can be returned or exchanged within <strong>7 days</strong> of delivery.</li>
+                <li>The product must be unused, unwashed, and in its original packaging with all tags attached.</li>
+                <li>If you receive a damaged or incorrect product during delivery, please inform our delivery agent or contact us immediately.</li>
+                <li>Refunds are processed within 3-5 business days via Mobile Banking (bKash/Nagad) upon product inspection.</li>
+            </ul>
+        </div>
+    </section>
 
-<script type="module" src="firebase.js"></script>
-<script src="script.js"></script>
+    <!-- Privacy Policy & Terms Section -->
+    <section class="policy-grid-section">
+        <div class="policy-box">
+            <h3>🔒 Privacy Policy</h3>
+            <p>We strictly protect your personal information. Your name, phone number, and address are solely used to fulfill your order delivery. We never share or sell your personal details to third parties.</p>
+        </div>
+        <div class="policy-box">
+            <h3>📜 Terms & Conditions</h3>
+            <p>By placing an order on ZELVIQO, you agree to receive product updates and delivery status notifications via phone or WhatsApp. Prices and availability are subject to change without prior notice.</p>
+        </div>
+    </section>
+
+    <!-- About Section (Kept intact) -->
+    <section id="about" class="about">
+        <h2>About ZELVIQO</h2>
+        <p>
+            Welcome to <strong>ZELVIQO</strong> — where luxury meets skincare. We are committed to delivering premium-quality skincare products that nourish, protect, and enhance your natural beauty. Every product is selected with care to provide safe, effective, and visible results, helping you achieve healthy, glowing, and confident skin every day.
+        </p>
+    </section>
+
+    <!-- Review Section (Kept Firebase structure intact) -->
+    <section id="review" class="review">
+        <h2>Customer Reviews</h2>
+
+        <!-- Review Form -->
+        <div class="review-form-container">
+            <h3>Write a Review</h3>
+            <form id="reviewForm">
+                <input type="text" id="reviewName" placeholder="Your Name" required>
+
+                <div class="rating-container">
+                    <label>Your Rating:</label>
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="rating" value="5" checked><label for="star5" title="5 stars">★</label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">★</label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">★</label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">★</label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">★</label>
+                    </div>
+                </div>
+
+                <textarea id="reviewText" placeholder="Write your review here..." required></textarea>
+                <button type="submit" id="submitReviewBtn">Submit Review</button>
+            </form>
+        </div>
+
+        <!-- Dynamic Reviews Display Container -->
+        <div id="reviews-list"></div>
+
+        <!-- See More Reviews Button -->
+        <div class="see-more-container">
+            <button type="button" id="seeMoreBtn" class="see-more-btn" style="display: none;">See More Reviews</button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>📞 Contact Us</h2>
+        <div class="contact-box">
+            <p><strong>📱 Phone:</strong> <a href="tel:01619875217">01619875217</a></p>
+            <p><strong>📧 Email:</strong> <a href="mailto:zelviqo.bd@gmail.com">zelviqo.bd@gmail.com</a></p>
+            <p><strong>📍 Address:</strong> Mirpur, Dhaka, Bangladesh</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>©2026 ZELVIQO Luxury Skincare | All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="firebase.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
