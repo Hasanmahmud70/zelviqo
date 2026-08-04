@@ -2,7 +2,7 @@
 // ZELVIQO LUXURY SKINCARE - MAIN CONTROLLER & STATE MANAGER
 // ================================================================
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwmQ-UmUfqly-IyK9H_5kxocCE5TA_7UA6CIXb5-NbWu5-0t5pPjntw5r0Th9PvIrNK/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHerop81u6bBykovqjmQ6b-WKzUoLDk5xfK84Gjx6pzbad2VBK2P7L2uqHRqkyONEp/exec";
 
 // Application State
 let selectedProductName = "";
