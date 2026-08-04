@@ -14,10 +14,6 @@
 
 <body>
 
-<a href="https://wa.me/8801619875217" class="whatsapp" target="_blank" aria-label="WhatsApp">
-<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-</a>
-
 <header>
 
 <div class="logo">
@@ -79,12 +75,14 @@ Welcome to <strong>ZELVIQO</strong> — where luxury meets skincare. We are comm
 <h2>Order Now</h2>
 <p id="selected-product-display" class="selected-product-display"></p>
 
-<form id="orderForm" onsubmit="event.preventDefault(); sendWhatsApp();">
-<input type="text" id="name" placeholder="Your Name">
-<input type="tel" id="phone" placeholder="Phone Number">
-<textarea id="address" placeholder="Address"></textarea>
-<button type="button" onclick="sendWhatsApp()">Confirm Order</button>
+<form id="orderForm" onsubmit="event.preventDefault(); submitOrder();">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="tel" id="phone" placeholder="Phone Number" required>
+<textarea id="address" placeholder="Address" required></textarea>
+<button type="submit" id="submitBtn">Confirm Order</button>
 </form>
+
+<div id="order-status" style="display:none; text-align:center; font-weight:600; font-size:18px; color:#0c6b63; margin-top:20px;"></div>
 </section>
 
 <section id="review" class="review">
@@ -126,12 +124,7 @@ Welcome to <strong>ZELVIQO</strong> — where luxury meets skincare. We are comm
 
 <div class="contact-box">
 <p><strong>📱 Phone:</strong> <a href="tel:01619875217">01619875217</a></p>
-<p><strong>💬 WhatsApp:</strong>
-<a href="https://wa.me/8801619875217" target="_blank">01619875217</a>
-</p>
-<p><strong>📧 Email:</strong>
-<a href="mailto:zelviqo.bd@gmail.com">zelviqo.bd@gmail.com</a>
-</p>
+<p><strong>📧 Email:</strong> <a href="mailto:zelviqo.bd@gmail.com">zelviqo.bd@gmail.com</a></p>
 <p><strong>📍 Address:</strong> Mirpur, Dhaka, Bangladesh</p>
 </div>
 </section>
