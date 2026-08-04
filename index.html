@@ -81,6 +81,19 @@ Welcome to <strong>ZELVIQO</strong> — where luxury meets skincare. We are comm
 <p id="selected-product-display" class="selected-product-display"></p>
 
 <form id="orderForm" onsubmit="event.preventDefault(); submitOrder();">
+<!-- Quantity Selector & Total Price Display -->
+<div id="quantity-wrapper" class="quantity-wrapper" style="display:none;">
+    <div class="quantity-label">Quantity:</div>
+    <div class="quantity-control">
+        <button type="button" class="qty-btn" onclick="changeQuantity(-1)">-</button>
+        <input type="number" id="quantity" class="quantity-input" value="1" min="1" readonly>
+        <button type="button" class="qty-btn" onclick="changeQuantity(1)">+</button>
+    </div>
+    <div class="total-price-box">
+        Total Price: <span id="total-price-display">৳0</span>
+    </div>
+</div>
+
 <input type="text" id="name" placeholder="Your Name" required>
 <input type="tel" id="phone" placeholder="Phone Number" required>
 <textarea id="address" placeholder="Address" required></textarea>
