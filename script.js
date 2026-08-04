@@ -90,15 +90,14 @@ function submitOrder() {
         return;
     }
 
-    const totalPrice = currencySymbol + (unitPriceNum * currentQuantity);
-
+    const totalPrice = unitPriceNum * currentQuantity;
     // Disable button during submission
     submitBtn.disabled = true;
     submitBtn.innerText = "Processing...";
 
     const payload = {
         productName: selectedProduct,
-        productPrice: selectedPrice,
+        productPrice: unitPriceNum,
         quantity: currentQuantity,
         totalPrice: totalPrice,
         customerName: name,
