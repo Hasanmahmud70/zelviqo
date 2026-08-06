@@ -95,7 +95,7 @@ button, input, textarea, select {
 }
 
 /* ----------------------------------------------------------------
-   2. ANNOUNCEMENT BAR (Shopify High-Conversion Style)
+   2. ANNOUNCEMENT BAR
    ---------------------------------------------------------------- */
 .announcement-bar {
     background: linear-gradient(135deg, #093832 0%, #0c4a42 50%, #156257 100%);
@@ -120,7 +120,7 @@ button, input, textarea, select {
 }
 
 /* ----------------------------------------------------------------
-   3. HEADER & NAVBAR (Apple Backdrop Blur Glassmorphism)
+   3. HEADER & NAVBAR
    ---------------------------------------------------------------- */
 .navbar {
     position: sticky;
@@ -139,7 +139,7 @@ button, input, textarea, select {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 24px;
+    padding: 16px 24px;
 }
 
 .logo {
@@ -153,12 +153,11 @@ button, input, textarea, select {
 }
 
 .logo img {
-    height: 72px;
+    height: 64px;
     width: auto;
-    max-width: 220px;
+    max-width: 200px;
     object-fit: contain;
     display: block;
-    filter: none;
 }
 
 .nav-links {
@@ -241,7 +240,7 @@ button, input, textarea, select {
 }
 
 /* ----------------------------------------------------------------
-   4. FLOATING ACTION BUTTONS (WhatsApp, Call, Email Buttons)
+   4. FLOATING ACTION BUTTONS
    ---------------------------------------------------------------- */
 .floating-actions {
     position: fixed;
@@ -297,15 +296,16 @@ button, input, textarea, select {
 .float-btn.email {
     background: linear-gradient(135deg, var(--gold) 0%, #9e7a33 100%);
 }
+
 /* ----------------------------------------------------------------
-   5. HERO SECTION (Editorial Beauty Luxury Banner)
+   5. HERO SECTION
    ---------------------------------------------------------------- */
 .hero {
     position: relative;
     background: linear-gradient(135deg, #072a25 0%, #0c4a42 45%, #145e54 80%, #1a3d36 100%);
     color: #ffffff;
     text-align: center;
-    padding: 110px 20px 100px;
+    padding: 100px 20px 90px;
     overflow: hidden;
 }
 
@@ -418,13 +418,13 @@ button, input, textarea, select {
 }
 
 /* ----------------------------------------------------------------
-   6. TRUST BAR / BADGES (Amazon Polish)
+   6. TRUST BAR / BADGES
    ---------------------------------------------------------------- */
 .trust-bar {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 32px;
     flex-wrap: wrap;
     background: #ffffff;
     padding: 22px 24px;
@@ -482,7 +482,7 @@ button, input, textarea, select {
    ---------------------------------------------------------------- */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
     gap: 36px;
 }
 
@@ -604,7 +604,7 @@ button, input, textarea, select {
     font-size: 13.5px;
     color: var(--dark-muted);
     line-height: 1.6;
-    min-height: 85px;
+    min-height: 95px;
     margin-bottom: 22px;
     background: #faf8f5;
     padding: 14px 16px;
@@ -617,9 +617,13 @@ button, input, textarea, select {
     animation: fadeIn 0.3s ease;
 }
 
+.tab-content ul, .tab-content ol {
+    padding-left: 18px;
+}
+
 .tab-content ul {
     list-style: none;
-    padding: 0;
+    padding-left: 0;
 }
 
 .tab-content ul li {
@@ -634,6 +638,10 @@ button, input, textarea, select {
     left: 0;
     color: var(--primary);
     font-weight: bold;
+}
+
+.tab-content ol li {
+    margin-bottom: 6px;
 }
 
 .btn-order-now {
@@ -657,8 +665,9 @@ button, input, textarea, select {
     transform: translateY(-2px);
     box-shadow: var(--shadow-gold);
 }
+
 /* ----------------------------------------------------------------
-   9. ORDER SECTION / CHECKOUT (Daraz & Shopify Master Checkout)
+   9. ORDER SECTION & CHECKOUT
    ---------------------------------------------------------------- */
 .checkout-section {
     background: #fdfbf7;
@@ -678,7 +687,7 @@ button, input, textarea, select {
 }
 
 .checkout-card {
-    max-width: 680px;
+    max-width: 720px;
     margin: 0 auto;
     background: var(--card-bg);
     border-radius: var(--radius-xl);
@@ -752,7 +761,7 @@ button, input, textarea, select {
     color: var(--dark);
 }
 
-/* Quantity Control (Shopify Style) */
+/* Quantity Control */
 .quantity-control {
     display: flex;
     align-items: center;
@@ -790,7 +799,7 @@ button, input, textarea, select {
     background: transparent;
 }
 
-/* Delivery Zones (Daraz Radio Selection Cards) */
+/* Delivery Zones */
 .delivery-zones-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -838,6 +847,81 @@ button, input, textarea, select {
     color: var(--primary);
     font-weight: 800;
 }
+
+/* Payment Methods Grid */
+.payment-methods-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.payment-card {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition);
+    background: #ffffff;
+    position: relative;
+}
+
+.payment-card input[type="radio"] {
+    margin-top: 4px;
+    margin-right: 14px;
+    accent-color: var(--primary);
+}
+
+.payment-card.active {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    box-shadow: 0 4px 15px rgba(12, 74, 66, 0.08);
+}
+
+.payment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.pay-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--dark);
+}
+
+.pay-sub {
+    font-size: 13px;
+    color: var(--dark-muted);
+}
+
+.payment-badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.badge {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.mfs-bkash { background: #e2136e; }
+.mfs-nagad { background: #f7921e; }
+.mfs-rocket { background: #8c3494; }
+.mfs-upay { background: #ffbf00; color: #000; }
+.card-visa { background: #1a1f71; }
+.card-mc { background: #eb001b; }
+.card-amex { background: #016fd0; }
+.card-nexus { background: #008080; }
 
 /* Coupon Input System */
 .coupon-box {
@@ -1096,6 +1180,7 @@ button, input, textarea, select {
     font-weight: 800;
     border: 1px dashed var(--primary);
 }
+
 /* ----------------------------------------------------------------
    11. ORDER TRACKING SECTION
    ---------------------------------------------------------------- */
@@ -1151,6 +1236,21 @@ button, input, textarea, select {
     box-shadow: var(--shadow-md);
 }
 
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.status-badge.pending { background: var(--warning-bg); color: var(--warning); }
+.status-badge.confirmed { background: var(--primary-light); color: var(--primary); }
+.status-badge.shipped { background: #e0f2fe; color: #0369a1; }
+.status-badge.delivered { background: var(--success-bg); color: var(--success); }
+.status-badge.cancelled { background: var(--error-bg); color: var(--error); }
+
 /* ----------------------------------------------------------------
    12. FAQ ACCORDION
    ---------------------------------------------------------------- */
@@ -1197,11 +1297,21 @@ button, input, textarea, select {
     transition: transform 0.3s ease;
 }
 
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
 .faq-body {
+    display: none;
     padding: 0 24px 20px;
     font-size: 14.5px;
     color: var(--dark-muted);
     line-height: 1.65;
+}
+
+.faq-item.active .faq-body {
+    display: block;
+    animation: fadeIn 0.3s ease;
 }
 
 /* ----------------------------------------------------------------
@@ -1339,6 +1449,37 @@ button, input, textarea, select {
     margin-bottom: 36px;
 }
 
+.review-card {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-header strong {
+    font-size: 15px;
+    color: var(--dark);
+}
+
+.review-header .stars {
+    color: var(--gold);
+    font-size: 16px;
+}
+
+.review-text {
+    font-size: 14px;
+    color: var(--dark-muted);
+    line-height: 1.6;
+}
+
 .text-center {
     text-align: center;
 }
@@ -1402,7 +1543,7 @@ button, input, textarea, select {
 }
 
 /* ----------------------------------------------------------------
-   17. MODALS (AUTH & ACCOUNT DASHBOARD)
+   17. MODALS
    ---------------------------------------------------------------- */
 .modal-overlay {
     position: fixed;
@@ -1632,6 +1773,15 @@ button, input, textarea, select {
     min-height: 150px;
 }
 
+.history-item {
+    background: var(--light-bg);
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
 /* ----------------------------------------------------------------
    18. ANIMATION KEYFRAMES
    ---------------------------------------------------------------- */
@@ -1652,7 +1802,7 @@ button, input, textarea, select {
 }
 
 /* ----------------------------------------------------------------
-   19. RESPONSIVE DESIGN BREAKPOINTS
+   19. RESPONSIVE BREAKPOINTS
    ---------------------------------------------------------------- */
 @media (max-width: 1024px) {
     .hero h1 { font-size: 42px; }
@@ -1665,7 +1815,7 @@ button, input, textarea, select {
     .hero { padding: 80px 18px 70px; }
     .hero h1 { font-size: 34px; }
     .hero p { font-size: 16px; }
-    .trust-bar { gap: 20px; justify-content: flex-start; overflow-x: auto; padding: 16px; }
+    .trust-bar { gap: 16px; justify-content: flex-start; overflow-x: auto; padding: 16px; }
     .trust-item { flex-shrink: 0; font-size: 13px; }
     .delivery-zones-grid { grid-template-columns: 1fr; }
     .checkout-card { padding: 24px 18px; }
