@@ -210,6 +210,13 @@ async function processOrderSubmission() {
             document.getElementById("createdOrderId").innerText = orderId;
             document.getElementById("orderSuccessCard").style.display = "block";
             document.getElementById("orderForm").reset();
+            // Meta Purchase Event
+if (typeof fbq === "function") {
+    fbq('track', 'Purchase', {
+        value: grandTotal,
+        currency: 'BDT'
+    });
+}
         } else {
             alert("Order submission failed. Please try again or order via WhatsApp.");
         }
