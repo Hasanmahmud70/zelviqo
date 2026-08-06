@@ -4,7 +4,7 @@
 // ================================================================
 
 const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbyAwpvZPZ1hAiWrk32F5DPuHHhsnQy_PebeMiZxAgR4zyDPR2Rbrq08dX69sHgZH8DD/exec";
+    "https://script.google.com/macros/s/AKfycbxpEX3KN-CdMkKA75ThRTtUwSIcZdTcp7vTPAWrZpPvig2wGVns9VJAFA834ZamDg0N-A/exec";
 
 // Application State
 let selectedProductName = "";
