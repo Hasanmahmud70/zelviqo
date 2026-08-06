@@ -3,7 +3,8 @@
 // PRODUCTION BUG-FIXED & ENHANCED VERSION
 // ================================================================
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby69V9Pj2muHHtjVZ7MKOJkUcSEN31ObtrUKITVqST_R6NeXvYSgl75utLORnTsjABK/exec";
+const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbyAwpvZPZ1hAiWrk32F5DPuHHhsnQy_PebeMiZxAgR4zyDPR2Rbrq08dX69sHgZH8DD/exec";
 
 // Application State
 let selectedProductName = "";
