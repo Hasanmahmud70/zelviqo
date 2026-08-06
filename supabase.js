@@ -1,15 +1,13 @@
-// ================================================================
-// ZELVIQO - SUPABASE CONFIGURATION
-// ================================================================
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
 const SUPABASE_URL = "https://xllyqmzcqgwbstduevm.supabase.co";
 
-const SUPABASE_ANON_KEY =
-    "sb_publishable_w0oIenK-GWtiTvuC3XJcVQ_lG0Y-fPk";
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_w0oIenK-GWtiC3XJcVQ_lG0Y-fPk";
 
-const supabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
+export const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
 );
 
 console.log("ZELVIQO Supabase connected");
