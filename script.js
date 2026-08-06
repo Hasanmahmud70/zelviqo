@@ -153,6 +153,7 @@ function updateOrderSummary() {
 
 // Process Order Submission
 async function processOrderSubmission() {
+    alert("Order function started");
     if (!selectedProductName) {
         alert("Please select a product first.");
         return;
