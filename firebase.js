@@ -1,3 +1,8 @@
+// ================================================================
+// ZELVIQO LUXURY SKINCARE - FIREBASE MASTER CONTROLLER
+// PRODUCTION BUG-FIXED & ENHANCED VERSION
+// ================================================================
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { 
     getAuth, 
@@ -27,7 +32,7 @@ import {
     serverTimestamp 
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// Firebase Configuration
+// Firebase Production Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBiN8DvUWmkd5T579LHiP4aAWgLvZ44HcI",
   authDomain: "zelviqo-f9531.firebaseapp.com",
@@ -38,6 +43,7 @@ const firebaseConfig = {
   measurementId: "G-WSNEJPW7FQ"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -254,7 +260,7 @@ export function initReviewSystem() {
     const render = () => {
         if (!reviewsListContainer) return;
         if (reviews.length === 0) {
-            reviewsListContainer.innerHTML = `<p class="no-reviews">No reviews yet. Be the first to share your experience!</p>`;
+            reviewsListContainer.innerHTML = `<p class="no-reviews" style="text-align:center; width:100%;">No reviews yet. Be the first to share your experience!</p>`;
             if (seeMoreBtn) seeMoreBtn.style.display = "none";
             return;
         }
