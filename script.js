@@ -221,8 +221,14 @@ if (typeof fbq === "function") {
             alert("Order submission failed. Please try again or order via WhatsApp.");
         }
     } catch (err) {
-        console.error("Order Submission Error:", err);
-        alert("An error occurred. Please check your connection.");
+    console.error(err);
+
+    alert(
+        "ERROR:\n\n" +
+        err.name + "\n\n" +
+        err.message
+    );
+}
     } finally {
         submitBtn.disabled = false;
         submitBtn.innerText = "Confirm Order (Cash on Delivery)";
