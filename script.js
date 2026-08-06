@@ -3,8 +3,7 @@
 // PRODUCTION BUG-FIXED & ENHANCED VERSION
 // ================================================================
 
-const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbxpEX3KN-CdMkKA75ThRTtUwSIcZdTcp7vTPAWrZpPvig2wGVns9VJAFA834ZamDg0N-A/exec";
+   
 
 // Application State
 let selectedProductName = "";
@@ -15,37 +14,16 @@ let selectedZone = "Inside Dhaka";
 let deliveryCharge = 60;
 let selectedPaymentMethod = "Cash On Delivery";
 let appliedCoupon = null;
-let couponsList = [];
+let couponList = [
+    { code: "ZELVIQO10", type: "percent", value: 10, minOrder: 500, active: true },
+    { code: "WELCOME100", type: "flat", value: 100, minOrder: 1000, active: true }
+];
 
 // Initialize Page Data
 document.addEventListener("DOMContentLoaded", () => {
-    fetchCouponsFromBackend();
+    
     trackGA4Event('page_view', { page_title: document.title });
 });
-
-// Fetch Live Coupons from Google Apps Script
-async function fetchCouponsFromBackend() {
-    try {
-        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getCoupons`, {
-            method: 'GET',
-            headers: { 'Accept': 'application/json' }
-        });
-        if (!response.ok) throw new Error("Network response error");
-        const data = await response.json();
-        if (data.result === "success" && Array.isArray(data.coupons)) {
-            couponsList = data.coupons;
-        } else {
-            throw new Error("Invalid coupons format");
-        }
-    } catch (err) {
-        console.warn("Using fallback coupons due to network/CORS restrictions:", err);
-        couponsList = [
-            { code: "ZELVIQO10", type: "percent", value: 10, minOrder: 500, active: true },
-            { code: "WELCOME100", type: "flat", value: 100, minOrder: 1000, active: true }
-        ];
-    }
-}
-
 // Select Product Handler
 function selectProduct(productName, price, image = "") {
     selectedProductName = productName;
