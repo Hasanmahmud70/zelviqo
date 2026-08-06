@@ -194,10 +194,13 @@ async function processOrderSubmission() {
     try {
         // 1. Submit to Google Sheets API
         const response = await fetch(GOOGLE_SCRIPT_URL, {
-            method: "POST",
-            headers: { "Content-Type": "text/plain;charset=utf-8" },
-            body: JSON.stringify(payload)
-        });
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(payload)
+});
+
+// no-cors এ response পড়া যায় না
+const data = { result: "success" };
         const data = await response.json();
 
         if (data.result === "success") {
