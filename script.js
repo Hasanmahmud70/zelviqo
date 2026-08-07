@@ -5,7 +5,7 @@
 
 // Supabase Configuration
 const SUPABASE_URL = "https://xllyqwzcgqwbstduemev.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhsbHlxbXpjZ3F3YnN0ZHVlbWV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwNDM1ODYsImV4cCI6MjEwMTY";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhsbHlxbXpjZ3F3YnN0ZHVlbWV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwNDM1ODYsImV4cCI6MjEwMTYxOTU4Nn0.M1NTVviGckjl4SiNqLzMUqkRUt9THVVv-3QfBYLi_z0";
 
 let supabaseClient = null;
 if (typeof supabase !== 'undefined') {
@@ -333,7 +333,7 @@ async function processOrderSubmission() {
 
     } catch (err) {
         console.error("Order process error:", err);
-        alert("Unable to place your order right now. Please try again.");
+        alert("Unable to place your order right now: " + (err ? err.message : "Unknown Error"));
     } finally {
         submitBtn.disabled = false;
         submitBtn.innerText = originalBtnText;
