@@ -387,9 +387,21 @@ async function trackOrderSubmit() {
 }
 
 // Admin Dashboard Functions
+const ADMIN_SECURITY_PIN = "018608210"; 
+
 function openAdminModal() {
-    document.getElementById("adminModal").style.display = "flex";
-    fetchAdminOrders();
+    const enteredPin = prompt("Enter Admin Security PIN to access dashboard:");
+    
+    if (enteredPin === null) {
+        return; // ক্যানসেল চাপলে কিছুই হবে না
+    }
+    
+    if (enteredPin.trim() === ADMIN_SECURITY_PIN) {
+        document.getElementById("adminModal").style.display = "flex";
+        fetchAdminOrders();
+    } else {
+        alert("❌ Wrong Admin PIN! Access Denied.");
+    }
 }
 
 async function fetchAdminOrders() {
