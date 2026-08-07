@@ -1,9 +1,18 @@
 // ================================================================
 // ZELVIQO LUXURY SKINCARE - MAIN FRONTEND CONTROLLER
-// PRODUCTION BUG-FIXED & ENHANCED VERSION
+// SUPABASE POWERED ORDER SYSTEM & ADMIN DASHBOARD
 // ================================================================
 
-   
+// Supabase Configuration
+const SUPABASE_URL = "YOUR_SUPABASE_URL";
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+let supabaseClient = null;
+if (typeof supabase !== 'undefined') {
+    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+} else if (window.supabase) {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
 
 // Application State
 let selectedProductName = "";
@@ -14,16 +23,21 @@ let selectedZone = "Inside Dhaka";
 let deliveryCharge = 60;
 let selectedPaymentMethod = "Cash On Delivery";
 let appliedCoupon = null;
-let couponList = [
+
+const couponList = [
     { code: "ZELVIQO10", type: "percent", value: 10, minOrder: 500, active: true },
     { code: "WELCOME100", type: "flat", value: 100, minOrder: 1000, active: true }
 ];
 
-// Initialize Page Data
+let allAdminOrders = [];
+
+// DOM Ready Initialization
 document.addEventListener("DOMContentLoaded", () => {
-    
-    trackGA4Event('page_view', { page_title: document.title });
+    if (typeof gtag === 'function') {
+        gtag('event', 'page_view', { page_title: document.title });
+    }
 });
+
 // Select Product Handler
 function selectProduct(productName, price, image = "") {
     selectedProductName = productName;
@@ -32,17 +46,41 @@ function selectProduct(productName, price, image = "") {
     quantity = 1;
     appliedCoupon = null;
 
-    document.getElementById("selected-product-title").innerText = `Selected Product: ${selectedProductName} (৳${selectedUnitPrice})`;
-    document.getElementById("checkout-card").style.display = "block";
-    document.getElementById("orderSuccessCard").style.display = "none";
-    document.getElementById("quantity").value = quantity;
-    document.getElementById("couponInput").value = "";
-    document.getElementById("couponMessage").innerText = "";
+    const titleElem = document.getElementById("selected-product-title");
+    if (titleElem) {
+        titleElem.innerText = `Selected Product: ${selectedProductName} (৳${selectedUnitPrice})`;
+    }
+    
+    const checkoutCard = document.getElementById("checkout-card");
+    if (checkoutCard) checkoutCard.style.display = "block";
+
+    const successCard = document.getElementById("orderSuccessCard");
+    if (successCard) successCard.style.display = "none";
+
+    const qtyInput = document.getElementById("quantity");
+    if (qtyInput) qtyInput.value = quantity;
+
+    const couponInput = document.getElementById("couponInput");
+    if (couponInput) couponInput.value = "";
+
+    const couponMsg = document.getElementById("couponMessage");
+    if (couponMsg) couponMsg.innerText = "";
 
     updateOrderSummary();
 
-    // Trigger Meta Pixel & GA4 Analytics Events
-    trackAnalyticsViewContent(selectedProductName, selectedUnitPrice);
+    // Trigger Meta Pixel & GA4 ViewContent Events
+    if (typeof fbq === 'function') {
+        fbq('track', 'ViewContent', {
+            content_name: productName,
+            value: price,
+            currency: 'BDT'
+        });
+    }
+    if (typeof gtag === 'function') {
+        gtag('event', 'view_item', {
+            items: [{ item_name: productName, price: price }]
+        });
+    }
 
     const checkoutElem = document.getElementById("order");
     if (checkoutElem) checkoutElem.scrollIntoView({ behavior: "smooth" });
@@ -51,7 +89,8 @@ function selectProduct(productName, price, image = "") {
 // Adjust Quantity
 function adjustQuantity(delta) {
     quantity = Math.max(1, quantity + delta);
-    document.getElementById("quantity").value = quantity;
+    const qtyInput = document.getElementById("quantity");
+    if (qtyInput) qtyInput.value = quantity;
     updateOrderSummary();
 }
 
@@ -104,7 +143,7 @@ function applyCouponCode() {
     }
 
     const subtotal = selectedUnitPrice * quantity;
-    const coupon = couponsList.find(c => c.code === codeInput && c.active);
+    const coupon = couponList.find(c => c.code === codeInput && c.active);
 
     if (!coupon) {
         msgBox.className = "coupon-msg error";
@@ -145,7 +184,7 @@ function updateOrderSummary() {
         }
     }
 
-    // Calculate Discount
+    // Calculate Coupon Discount
     let discount = 0;
     if (appliedCoupon) {
         if (appliedCoupon.type === "percent") {
@@ -158,20 +197,27 @@ function updateOrderSummary() {
     const grandTotal = Math.max(0, subtotal + finalDeliveryFee - discount);
 
     // Update DOM Elements
-    document.getElementById("sumUnitPrice").innerText = `৳${selectedUnitPrice}`;
-    document.getElementById("sumQty").innerText = quantity;
-    document.getElementById("sumSubtotal").innerText = `৳${subtotal}`;
-    document.getElementById("sumDelivery").innerText = finalDeliveryFee === 0 ? "FREE" : `৳${finalDeliveryFee}`;
-
+    const unitPriceElem = document.getElementById("sumUnitPrice");
+    const qtyElem = document.getElementById("sumQty");
+    const subtotalElem = document.getElementById("sumSubtotal");
+    const deliveryElem = document.getElementById("sumDelivery");
     const discountLine = document.getElementById("discountLine");
+    const discountElem = document.getElementById("sumDiscount");
+    const grandTotalElem = document.getElementById("sumGrandTotal");
+
+    if (unitPriceElem) unitPriceElem.innerText = `৳${selectedUnitPrice}`;
+    if (qtyElem) qtyElem.innerText = quantity;
+    if (subtotalElem) subtotalElem.innerText = `৳${subtotal}`;
+    if (deliveryElem) deliveryElem.innerText = finalDeliveryFee === 0 ? "FREE" : `৳${finalDeliveryFee}`;
+
     if (discount > 0) {
         if (discountLine) discountLine.style.display = "flex";
-        document.getElementById("sumDiscount").innerText = `-৳${discount}`;
+        if (discountElem) discountElem.innerText = `-৳${discount}`;
     } else {
         if (discountLine) discountLine.style.display = "none";
     }
 
-    document.getElementById("sumGrandTotal").innerText = `৳${grandTotal}`;
+    if (grandTotalElem) grandTotalElem.innerText = `৳${grandTotal}`;
 }
 
 // Process Order Submission
@@ -197,6 +243,9 @@ async function processOrderSubmission() {
     }
 
     const submitBtn = document.getElementById("submitOrderBtn");
+    if (!submitBtn) return;
+
+    // Prevent duplicate submission
     submitBtn.disabled = true;
     const originalBtnText = submitBtn.innerText;
     submitBtn.innerText = "Processing Order...";
@@ -205,106 +254,99 @@ async function processOrderSubmission() {
     const finalDeliveryCharge = subtotal >= 1999 ? 0 : deliveryCharge;
     let discount = 0;
     if (appliedCoupon) {
-        discount = appliedCoupon.type === "percent" ? Math.round((subtotal * appliedCoupon.value) / 100) : Math.min(appliedCoupon.value, subtotal);
+        discount = appliedCoupon.type === "percent" 
+            ? Math.round((subtotal * appliedCoupon.value) / 100) 
+            : Math.min(appliedCoupon.value, subtotal);
     }
     const grandTotal = Math.max(0, subtotal + finalDeliveryCharge - discount);
+
+    // Collision-safe Order ID: ZQ- + 6 Random Digits
     const orderId = "ZQ-" + Math.floor(100000 + Math.random() * 900000);
 
-    const payload = {
-        action: "createOrder",
-        orderId: orderId,
-        productName: selectedProductName,
-        unitPrice: selectedUnitPrice,
+    const orderPayload = {
+        order_id: orderId,
+        product_name: selectedProductName,
+        product_image: selectedProductImage,
+        unit_price: selectedUnitPrice,
         quantity: quantity,
-        productTotal: subtotal,
-        deliveryZone: selectedZone,
-        deliveryCharge: finalDeliveryCharge,
-        couponCode: appliedCoupon ? appliedCoupon.code : "NONE",
+        subtotal: subtotal,
+        delivery_zone: selectedZone,
+        delivery_charge: finalDeliveryCharge,
+        coupon_code: appliedCoupon ? appliedCoupon.code : "NONE",
         discount: discount,
-        grandTotal: grandTotal,
-        customerName: name,
+        grand_total: grandTotal,
+        customer_name: name,
         phone: phone,
-        email: email,
+        email: email || null,
         address: address,
-        paymentMethod: selectedPaymentMethod,
-        timestamp: new Date().toISOString()
+        payment_method: selectedPaymentMethod,
+        order_status: "Pending",
+        payment_status: "Unpaid"
     };
 
     // Fire Analytics InitiateCheckout
-    trackAnalyticsInitiateCheckout(grandTotal);
+    if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', {
+            value: grandTotal,
+            currency: 'BDT',
+            content_name: selectedProductName
+        });
+    }
 
     try {
-        // 1. Send Order to Google Apps Script (Using text/json mode)
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "text/plain;charset=utf-8",
-            },
-            body: JSON.stringify(payload)
-        });
-
-        let scriptResult = { result: "success" };
-        if (response.ok) {
-            try {
-                scriptResult = await response.json();
-            } catch (e) {
-                // Ignore parse errors if response text returned plain OK
-            }
+        if (!supabaseClient) {
+            throw new Error("Supabase client is not initialized. Check your credentials.");
         }
 
-        if (scriptResult.result === "success" || response.type === "opaque" || response.ok) {
-            // 2. Save Order to Firebase Firestore
-            if (window.zelviqoAuth && typeof window.zelviqoAuth.saveOrderToFirestore === 'function') {
-                await window.zelviqoAuth.saveOrderToFirestore(payload);
-            }
+        // Save Order to Supabase Database
+        const { data, error } = await supabaseClient
+            .from("orders")
+            .insert([orderPayload])
+            .select();
 
-            // 3. Fire Purchase Tracking Events
-            trackAnalyticsPurchase(orderId, selectedProductName, grandTotal);
-
-            // 4. Handle Online Payment Redirection if selected
-            if (selectedPaymentMethod.includes("SSLCommerz") || selectedPaymentMethod.includes("Mobile Banking")) {
-                initiateSSLCommerzGateway(payload);
-                return;
-            }
-
-            // Render Success UI
-            document.getElementById("checkout-card").style.display = "none";
-            document.getElementById("createdOrderId").innerText = orderId;
-            document.getElementById("orderSuccessCard").style.display = "block";
-            document.getElementById("orderForm").reset();
-        } else {
-            alert("Order submission failed: " + (scriptResult.message || "Please try again or contact support on WhatsApp."));
+        if (error) {
+            throw error;
         }
-    } catch (err) {
-        console.error("Order process error:", err);
-        // Resilient fallback: order submitted via network request
+
+        // Fire Purchase Event ONLY after successful insert
+        if (typeof fbq === 'function') {
+            fbq('track', 'Purchase', {
+                value: grandTotal,
+                currency: 'BDT',
+                content_name: selectedProductName
+            });
+        }
+        if (typeof gtag === 'function') {
+            gtag('event', 'purchase', {
+                transaction_id: orderId,
+                value: grandTotal,
+                currency: 'BDT',
+                items: [{ item_name: selectedProductName, price: selectedUnitPrice, quantity: quantity }]
+            });
+        }
+
+        // Render Success UI
         document.getElementById("checkout-card").style.display = "none";
         document.getElementById("createdOrderId").innerText = orderId;
         document.getElementById("orderSuccessCard").style.display = "block";
         document.getElementById("orderForm").reset();
+
+    } catch (err) {
+        console.error("Order process error:", err);
+        alert("Unable to place your order right now. Please try again.");
     } finally {
         submitBtn.disabled = false;
         submitBtn.innerText = originalBtnText;
     }
 }
 
-// Redirect / Initiate Digital Payment Gateway
-function initiateSSLCommerzGateway(orderPayload) {
-    alert(`Redirecting to Secure Payment Gateway for Order ID: ${orderPayload.orderId}\nAmount: ৳${orderPayload.grandTotal}`);
-    // Show success view or payment gateway window
-    document.getElementById("checkout-card").style.display = "none";
-    document.getElementById("createdOrderId").innerText = orderPayload.orderId;
-    document.getElementById("orderSuccessCard").style.display = "block";
-    document.getElementById("orderForm").reset();
-}
-
 // Track Order Status
 async function trackOrderSubmit() {
-    const orderIdInput = document.getElementById("trackOrderIdInput").value.trim();
+    const orderIdInput = document.getElementById("trackOrderIdInput").value.trim().toUpperCase();
     const resultCard = document.getElementById("trackResultCard");
 
     if (!orderIdInput) {
-        alert("Please enter a valid Order ID.");
+        alert("Please enter a valid Order ID (e.g. ZQ-123456).");
         return;
     }
 
@@ -312,54 +354,193 @@ async function trackOrderSubmit() {
     resultCard.innerHTML = "<p>Searching order status...</p>";
 
     try {
-        const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getOrderStatus&orderId=${encodeURIComponent(orderIdInput)}`);
-        const data = await response.json();
+        if (!supabaseClient) throw new Error("Supabase is not initialized.");
 
-        if (data.result === "success" && data.order) {
-            const o = data.order;
+        const { data, error } = await supabaseClient
+            .from("orders")
+            .select("*")
+            .eq("order_id", orderIdInput)
+            .maybeSingle();
+
+        if (error) throw error;
+
+        if (data) {
+            const statusClass = (data.order_status || 'pending').toLowerCase();
             resultCard.innerHTML = `
                 <div style="text-align: left;">
-                    <h3>Order Status: <span class="status-badge ${o.status ? o.status.toLowerCase() : 'pending'}">${o.status || 'PENDING'}</span></h3>
-                    <p style="margin-top:8px;"><strong>Order ID:</strong> ${o.orderId}</p>
-                    <p><strong>Customer Name:</strong> ${o.customerName || 'N/A'}</p>
-                    <p><strong>Product:</strong> ${o.productName} (x${o.quantity})</p>
-                    <p><strong>Payment Method:</strong> ${o.paymentMethod || 'Cash On Delivery'}</p>
-                    <p><strong>Grand Total:</strong> ৳${o.grandTotal}</p>
+                    <h3>Order Status: <span class="status-badge ${statusClass}">${data.order_status || 'Pending'}</span></h3>
+                    <p style="margin-top:10px;"><strong>Order ID:</strong> ${data.order_id}</p>
+                    <p><strong>Customer Name:</strong> ${data.customer_name}</p>
+                    <p><strong>Product:</strong> ${data.product_name} (x${data.quantity})</p>
+                    <p><strong>Payment Method:</strong> ${data.payment_method}</p>
+                    <p><strong>Payment Status:</strong> ${data.payment_status || 'Unpaid'}</p>
+                    <p><strong>Grand Total:</strong> ৳${data.grand_total}</p>
                 </div>
             `;
         } else {
-            resultCard.innerHTML = `<p style="color:var(--error); font-weight:700;">❌ ${data.message || 'Order ID not found.'}</p>`;
+            resultCard.innerHTML = `<p style="color:var(--error); font-weight:700;">❌ Order ID not found. Please check and try again.</p>`;
         }
     } catch (err) {
-        resultCard.innerHTML = "<p style='color:var(--error); font-weight:700;'>Failed to fetch status. Please check your internet connection.</p>";
+        console.error("Track order error:", err);
+        resultCard.innerHTML = "<p style='color:var(--error); font-weight:700;'>Unable to fetch status. Please try again later.</p>";
     }
 }
 
-// Tabs & UI Helpers
+// Admin Dashboard Functions
+function openAdminModal() {
+    document.getElementById("adminModal").style.display = "flex";
+    fetchAdminOrders();
+}
+
+async function fetchAdminOrders() {
+    const tbody = document.getElementById("adminOrdersTableBody");
+    if (!tbody) return;
+
+    tbody.innerHTML = `<tr><td colspan="12" style="text-align:center; padding:30px;">Loading orders...</td></tr>`;
+
+    try {
+        if (!supabaseClient) throw new Error("Supabase client is not initialized.");
+
+        const { data, error } = await supabaseClient
+            .from("orders")
+            .select("*")
+            .order("created_at", { ascending: false });
+
+        if (error) throw error;
+
+        allAdminOrders = data || [];
+        renderAdminOrdersTable(allAdminOrders);
+
+    } catch (err) {
+        console.error("Admin fetch error:", err);
+        tbody.innerHTML = `<tr><td colspan="12" style="text-align:center; color:var(--error); padding:20px;">Failed to load orders: ${err.message}</td></tr>`;
+    }
+}
+
+function renderAdminOrdersTable(orders) {
+    const tbody = document.getElementById("adminOrdersTableBody");
+    if (!tbody) return;
+
+    if (!orders || orders.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="12" style="text-align:center; padding:30px;">No orders found.</td></tr>`;
+        return;
+    }
+
+    const statuses = ["Pending", "Confirmed", "Processing", "Shipped", "Delivered", "Cancelled"];
+
+    tbody.innerHTML = orders.map(o => {
+        const orderDate = o.created_at ? new Date(o.created_at).toLocaleDateString("en-GB", {
+            day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"
+        }) : "N/A";
+
+        const optionsHtml = statuses.map(s => 
+            `<option value="${s}" ${o.order_status === s ? 'selected' : ''}>${s}</option>`
+        ).join("");
+
+        const statusClass = (o.order_status || 'Pending').toLowerCase();
+
+        return `
+            <tr>
+                <td><strong>${o.order_id}</strong></td>
+                <td style="font-size:12px; white-space:nowrap;">${orderDate}</td>
+                <td>${o.customer_name || 'N/A'}</td>
+                <td><a href="tel:${o.phone}" style="color:var(--primary); font-weight:700;">${o.phone || 'N/A'}</a></td>
+                <td>${o.product_name}</td>
+                <td>${o.quantity}</td>
+                <td>৳${o.subtotal}</td>
+                <td>৳${o.delivery_charge}</td>
+                <td>৳${o.discount}</td>
+                <td><strong>৳${o.grand_total}</strong></td>
+                <td><small>${o.payment_method}</small></td>
+                <td>
+                    <select class="admin-status-select ${statusClass}" onchange="updateOrderStatus('${o.order_id}', this.value, this)">
+                        ${optionsHtml}
+                    </select>
+                </td>
+            </tr>
+        `;
+    }).join("");
+}
+
+async function updateOrderStatus(orderId, newStatus, selectElem) {
+    try {
+        if (!supabaseClient) throw new Error("Supabase client is not initialized.");
+
+        const { error } = await supabaseClient
+            .from("orders")
+            .update({ order_status: newStatus })
+            .eq("order_id", orderId);
+
+        if (error) throw error;
+
+        // Update cached array
+        const target = allAdminOrders.find(o => o.order_id === orderId);
+        if (target) target.order_status = newStatus;
+
+        if (selectElem) {
+            selectElem.className = `admin-status-select ${newStatus.toLowerCase()}`;
+        }
+
+    } catch (err) {
+        console.error("Update status error:", err);
+        alert("Failed to update status in Supabase. Please try again.");
+    }
+}
+
+function filterAdminOrders() {
+    const searchVal = document.getElementById("adminSearchInput").value.trim().toLowerCase();
+    
+    if (!searchVal) {
+        renderAdminOrdersTable(allAdminOrders);
+        return;
+    }
+
+    const filtered = allAdminOrders.filter(o => 
+        (o.order_id && o.order_id.toLowerCase().includes(searchVal)) ||
+        (o.customer_name && o.customer_name.toLowerCase().includes(searchVal)) ||
+        (o.phone && o.phone.toLowerCase().includes(searchVal))
+    );
+
+    renderAdminOrdersTable(filtered);
+}
+
+// Tabs, FAQ & UI Helpers
 function switchTab(btn, contentClass) {
     const parent = btn.closest(".product-info");
+    if (!parent) return;
+
     parent.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
     parent.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
 
     btn.classList.add("active");
-    parent.querySelector(`.${contentClass}`).classList.add("active");
+    const content = parent.querySelector(`.${contentClass}`);
+    if (content) content.classList.add("active");
 }
 
 function toggleFaq(btn) {
     const item = btn.parentElement;
-    item.classList.toggle("active");
+    if (item) item.classList.toggle("active");
 }
 
 function resetOrderForm() {
-    document.getElementById("orderSuccessCard").style.display = "none";
-    document.getElementById("checkout-card").style.display = "none";
+    const successCard = document.getElementById("orderSuccessCard");
+    const checkoutCard = document.getElementById("checkout-card");
+    if (successCard) successCard.style.display = "none";
+    if (checkoutCard) checkoutCard.style.display = "none";
     selectedProductName = "";
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Modals Controller
+// Modal Controllers
 function openAuthModal() {
-    document.getElementById("authModal").style.display = "flex";
+    const modal = document.getElementById("authModal");
+    if (modal) modal.style.display = "flex";
+}
+
+function openAccountModal(tab = 'profile') {
+    const modal = document.getElementById("accountModal");
+    if (modal) modal.style.display = "flex";
+    switchDashTab(tab);
 }
 
 function closeModal(id) {
@@ -368,9 +549,13 @@ function closeModal(id) {
 }
 
 function switchAuthView(view) {
-    document.getElementById("loginView").style.display = view === "login" ? "block" : "none";
-    document.getElementById("signupView").style.display = view === "signup" ? "block" : "none";
-    document.getElementById("forgotView").style.display = view === "forgot" ? "block" : "none";
+    const loginView = document.getElementById("loginView");
+    const signupView = document.getElementById("signupView");
+    const forgotView = document.getElementById("forgotView");
+
+    if (loginView) loginView.style.display = view === "login" ? "block" : "none";
+    if (signupView) signupView.style.display = view === "signup" ? "block" : "none";
+    if (forgotView) forgotView.style.display = view === "forgot" ? "block" : "none";
 }
 
 async function handleAuthSubmit(type) {
@@ -392,84 +577,54 @@ async function handleAuthSubmit(type) {
     }
 }
 
-async function openAccountModal(tab) {
-    document.getElementById("accountModal").style.display = "flex";
-    switchDashTab(tab);
-}
-
 async function switchDashTab(tab) {
-    document.getElementById("tabBtnProfile").classList.toggle("active", tab === "profile");
-    document.getElementById("tabBtnHistory").classList.toggle("active", tab === "history");
+    const profileTabBtn = document.getElementById("tabBtnProfile");
+    const historyTabBtn = document.getElementById("tabBtnHistory");
+    const profileTab = document.getElementById("dashProfileTab");
+    const historyTab = document.getElementById("dashHistoryTab");
 
-    document.getElementById("dashProfileTab").style.display = tab === "profile" ? "block" : "none";
-    document.getElementById("dashHistoryTab").style.display = tab === "history" ? "block" : "none";
+    if (profileTabBtn) profileTabBtn.classList.toggle("active", tab === "profile");
+    if (historyTabBtn) historyTabBtn.classList.toggle("active", tab === "history");
 
-    if (tab === "history" && window.zelviqoAuth) {
+    if (profileTab) profileTab.style.display = tab === "profile" ? "block" : "none";
+    if (historyTab) historyTab.style.display = tab === "history" ? "block" : "none";
+
+    if (tab === "history") {
         const historyBox = document.getElementById("orderHistoryContainer");
+        if (!historyBox) return;
+
         historyBox.innerHTML = "<p>Loading your orders...</p>";
-        const orders = await window.zelviqoAuth.fetchUserOrderHistory();
-        
-        if (orders.length === 0) {
-            historyBox.innerHTML = "<p>No order history found for your account.</p>";
-        } else {
-            historyBox.innerHTML = orders.map(o => `
-                <div class="history-item">
-                    <div><strong>${o.orderId}</strong> — ${o.productName} (x${o.quantity})</div>
-                    <div>Total: <strong>৳${o.grandTotal}</strong> | Status: <span class="status-badge ${o.deliveryZone ? 'confirmed' : 'pending'}">${o.paymentMethod || 'COD'}</span></div>
-                </div>
-            `).join("");
+
+        const phone = document.getElementById("accPhone")?.value.trim() || "";
+
+        if (!phone) {
+            historyBox.innerHTML = "<p>Please add your phone number in Profile to view order history.</p>";
+            return;
+        }
+
+        try {
+            if (!supabaseClient) throw new Error("Supabase client is not initialized.");
+
+            const { data, error } = await supabaseClient
+                .from("orders")
+                .select("*")
+                .eq("phone", phone)
+                .order("created_at", { ascending: false });
+
+            if (error) throw error;
+
+            if (!data || data.length === 0) {
+                historyBox.innerHTML = "<p>No order history found for this phone number.</p>";
+            } else {
+                historyBox.innerHTML = data.map(o => `
+                    <div class="history-item">
+                        <div><strong>${o.order_id}</strong> — ${o.product_name} (x${o.quantity})</div>
+                        <div>Total: <strong>৳${o.grand_total}</strong> | Status: <span class="status-badge ${(o.order_status || 'pending').toLowerCase()}">${o.order_status || 'Pending'}</span></div>
+                    </div>
+                `).join("");
+            }
+        } catch (err) {
+            historyBox.innerHTML = "<p>Unable to load order history.</p>";
         }
     }
-}
-
-async function saveProfileChanges() {
-    if (window.zelviqoAuth) {
-        await window.zelviqoAuth.updateUserProfile(
-            document.getElementById("accName").value,
-            document.getElementById("accPhone").value,
-            document.getElementById("accAddress").value
-        );
-    }
-}
-
-// Analytics Helpers (Meta Pixel & GA4)
-function trackGA4Event(eventName, params = {}) {
-    if (typeof gtag === "function") {
-        gtag('event', eventName, params);
-    }
-}
-
-function trackAnalyticsViewContent(productName, price) {
-    if (typeof fbq === "function") {
-        fbq('track', 'ViewContent', { content_name: productName, value: price, currency: 'BDT' });
-    }
-    trackGA4Event('view_item', {
-        currency: 'BDT',
-        value: price,
-        items: [{ item_name: productName, price: price }]
-    });
-}
-
-function trackAnalyticsInitiateCheckout(totalAmount) {
-    if (typeof fbq === "function") {
-        fbq('track', 'InitiateCheckout', { value: totalAmount, currency: 'BDT' });
-    }
-    trackGA4Event('begin_checkout', { currency: 'BDT', value: totalAmount });
-}
-
-function trackAnalyticsPurchase(orderId, productName, grandTotal) {
-    if (typeof fbq === "function") {
-        fbq('track', 'Purchase', {
-            value: grandTotal,
-            currency: 'BDT',
-            content_name: productName,
-            order_id: orderId
-        });
-    }
-    trackGA4Event('purchase', {
-        transaction_id: orderId,
-        value: grandTotal,
-        currency: 'BDT',
-        items: [{ item_name: productName }]
-    });
 }
